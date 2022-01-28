@@ -18,13 +18,11 @@ public class UserController {
 
     @GetMapping("/create-sample")
     public User hello(){
-        return new User(1L,"testusername", "testpassword", "testfistname", "testlastname");
+        return userService.createUser(new User(1L,"testusername", "testpassword", "testfistname", "testlastname"));
     }
 
     @GetMapping("/get/{id}")
-    public User getUser(@RequestParam long id){
-        //Another step to retrieve user
-
+    public User getUser(@PathVariable("id") Long id){
         return userService.getUser(id);
     }
 
@@ -34,12 +32,12 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    public User updateUser(@PathVariable Long id){
-        return userService.updateUser(id);
+    public User updateUser(@RequestBody User user){
+        return userService.updateUser(user);
     }
 
     @DeleteMapping("/delete/{id}")
-    public User deleteUser(@PathVariable Long id){
+    public Iterable<User> deleteUser(@PathVariable Long id){
         return userService.deleteUser(id);
     }
 
