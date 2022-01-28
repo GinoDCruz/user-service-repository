@@ -1,8 +1,8 @@
 package com.ibm.maill.user.repository;
 
-import org.springframework.stereotype.Repository;
+import com.ibm.maill.user.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class UserRepository {
+public interface UserRepository extends JpaRepository<User, Long>{
 
 }
