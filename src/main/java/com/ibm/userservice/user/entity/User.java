@@ -1,4 +1,4 @@
-package com.ibm.maill.user.entity;
+package com.ibm.userservice.user.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,11 +9,12 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY  )
     private Long id;
 
     private String username;
     private String password;
+    private String emailAddress;
     private String firstname;
     private String lastname;
 
@@ -67,5 +68,11 @@ public class User {
         this.lastname = lastname;
     }
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 }

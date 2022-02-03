@@ -1,7 +1,7 @@
-package com.ibm.maill.user.controller;
+package com.ibm.userservice.user.controller;
 
-import com.ibm.maill.user.entity.User;
-import com.ibm.maill.user.service.UserService;
+import com.ibm.userservice.user.entity.User;
+import com.ibm.userservice.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +39,11 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public Iterable<User> deleteUser(@PathVariable Long id){
         return userService.deleteUser(id);
+    }
+
+    @GetMapping("/getAll")
+    public Iterable<User> getAll(){
+        return userService.getUsers();
     }
 
 }
