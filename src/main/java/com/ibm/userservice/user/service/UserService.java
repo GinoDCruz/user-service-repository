@@ -1,7 +1,7 @@
-package com.ibm.maill.user.service;
+package com.ibm.userservice.user.service;
 
-import com.ibm.maill.user.entity.User;
-import com.ibm.maill.user.repository.UserRepository;
+import com.ibm.userservice.user.entity.User;
+import com.ibm.userservice.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +19,16 @@ public class UserService {
     }
 
     public User createUser(User user){
-        user.setId(1L);
+        long leftLimit = 1L;
+        long rightLimit = 10L;
+        long generatedLong = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
+        user.setId(generatedLong);
 
         return repository.save(user);
+    }
+
+    public Iterable<User> getUsers(){
+        return repository.findAll();
     }
 
     public User getUser(Long id){

@@ -1,6 +1,6 @@
-package com.ibm.maill.user.repository;
+package com.ibm.userservice.user.repository;
 
-import com.ibm.maill.user.entity.User;
+import com.ibm.userservice.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long>{
