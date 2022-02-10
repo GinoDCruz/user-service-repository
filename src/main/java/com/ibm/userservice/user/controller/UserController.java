@@ -1,9 +1,13 @@
 package com.ibm.userservice.user.controller;
 
+import com.ibm.userservice.user.entity.LoginForm;
+import com.ibm.userservice.user.entity.Session;
 import com.ibm.userservice.user.entity.User;
 import com.ibm.userservice.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -16,9 +20,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/create-sample")
-    public User hello(){
-        return userService.createUser(new User(1L,"testusername", "testpassword", "testfistname", "testlastname"));
+    @PostMapping("/login")
+    public Session login(@RequestBody LoginForm loginForm){
+        return userService.loginUser(loginForm);
+    }
+
+    @PostMapping("/logout")
+    public Session logout(@RequestBody LoginForm loginForm){
+        return userService.logoutUser(loginForm);
     }
 
     @GetMapping("/get/{id}")
@@ -41,9 +50,19 @@ public class UserController {
         return userService.deleteUser(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get/all")
     public Iterable<User> getAll(){
         return userService.getUsers();
+    }
+
+    @GetMapping("/get/email")
+    public User getUserByEmail(@RequestParam String emailAddress){
+        return userService.getUserByEmail(emailAddress);
+    }
+
+    @GetMapping("/get/emails")
+    public Iterable<User> getUsersByEmails(@RequestParam List<String> emailAddresses){
+        return userService.getUsersByEmailAddresses(emailAddresses);
     }
 
 }
